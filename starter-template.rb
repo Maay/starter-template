@@ -421,7 +421,7 @@ after_bundler do
 if config['bootstrap']
     gsub_file 'app/views/layouts/application.slim', /= stylesheet_link_tag "application"/ do
     <<-SLIM
-    = stylesheet_link_tag  "http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css", "application"
+= stylesheet_link_tag  "http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css", "application"
     SLIM
     end
 else
