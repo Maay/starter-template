@@ -299,6 +299,7 @@ if config['devise']
       gsub_file 'app/controllers/application_controller.rb', /end/ do
      <<-RUBY
      before_filter :authenticate_user!
+     end
      RUBY
      end
     
@@ -376,13 +377,6 @@ after_bundler do
   # create a pages controller and view
   generate(:controller, "pages index")
 
-  if recipes.include? 'slim'
-      gsub_file 'app/controllers/pages_controller.rb', /end/ do
-    <<-RUBY
-    respond_to :html
-    RUBY
-     end
-  end
   
   # set up a simple home page (with placeholder content)
   if recipes.include? 'slim'
@@ -497,9 +491,10 @@ config['bootstrap'] = yes_wizard?("Would you like to use Twitter Bootstrap for q
 
 if config['bootstrap']
     gem 'bootstrap-sass'
-    gsub_file 'app/assets/stylesheets/application.css', /body/ do
+    gsub_file 'app/assets/stylesheets/application.css', /body {/ do
     <<-CSS
     @import "bootstrap";
+    body {
     CSS
     end
 else
