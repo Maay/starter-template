@@ -1,0 +1,27 @@
+doctype
+html
+  head
+    title 
+      ' Botfilter
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  body
+    - if current_user
+      = render :partial => "layouts/topbar"
+    div class="messages"  
+    div class="container"
+      div class="toolbar-free-space"
+      div class="content"
+        = yield
+      footer class="footer"
+        div class="container"
+          ul
+            li
+              ' ©&nbsp;
+              a href="http://myhotspot.ru" target="_blank"
+                ' Hot Spot
+              ' &nbsp;2011
+            li
+              a href="mailto:info@myhotspot.ru"
+               ' Связаться с нами

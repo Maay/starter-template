@@ -1,0 +1,66 @@
+/*
+* This is a manifest file that'll automatically include all the stylesheets available in this directory
+* and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+* the top of the compiled file, but it's generally better to create a new file per style scope.
+*= require_self 
+*/ 
+
+body {
+	background-image: url('/assets/bg_noise_lg.png');
+	padding-top: 40px;
+}
+
+.messages {
+margin-top: 5px;
+width: 940px;
+zoom: 1;
+margin-right: auto;
+margin-left: auto;
+margin-bottom: 0;
+}
+
+.toolbar-free-space {
+	height: 15px;
+}
+
+.content {
+	background-color: white;
+	padding: 10px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+	border-radius: 4px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.7);
+	-o-box-shadow: 0 1px 3px rgba(0,0,0,0.7);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.7);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.7);
+	-ms-box-shadow: 0 1px 3px rgba(0,0,0,0.7);
+}
+
+footer {
+-webkit-transition: all 0.2s;
+opacity: 0.7;
+}
+
+footer:hover {
+-webkit-transition: all 0.2s;
+opacity: 1.0;
+}
+
+footer li:first-child {
+padding-left: 0;
+border-left: none;
+}
+
+footer ul, footer li {
+	list-style: none;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+
+footer li {
+margin-right: 10px;
+border-left: 1px solid rgba(0, 0, 0, 0.25);
+padding-left: 10px;
+}
+
