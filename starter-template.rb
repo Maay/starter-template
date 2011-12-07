@@ -206,13 +206,10 @@ config['bootstrap'] = yes_wizard?("Would you like to use Twitter Bootstrap for q
 @configs[@current_recipe] = config
 
 if config['bootstrap']
-    gem 'bootstrap-sass'
-    gsub_file 'app/assets/stylesheets/application.css', /require_self/ do
-    <<-CSS
-    require_self
-    */
-    @import "bootstrap";
-    CSS
+    gsub_file 'app/views/layouts/application.slim', /= stylesheet_link_tag "application"/ do
+    <<-SLIM
+    = stylesheet_link_tag  "http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css", "application"
+    SLIM
     end
 else
   recipes.delete('bootstrap')
