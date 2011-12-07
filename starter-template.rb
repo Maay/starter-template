@@ -296,7 +296,7 @@ if config['devise']
     # Nothing to do (Devise changes its initializer automatically when Mongoid is detected)
     # gsub_file 'config/initializers/devise.rb', 'devise/orm/active_record', 'devise/orm/mongoid'
     
-      gsub_file 'app/controllers/application_controller.rb', :after => "protect_from_forgery\n" do
+      gsub_file 'app/controllers/application_controller.rb', /end/ do
      <<-RUBY
      before_filter :authenticate_user!
      RUBY
@@ -377,7 +377,7 @@ after_bundler do
   generate(:controller, "pages index")
 
   if recipes.include? 'slim'
-      gsub_file 'app/controllers/pages_controller.rb', :after => "ApplicationController \n" do
+      gsub_file 'app/controllers/pages_controller.rb', /end/ do
     <<-RUBY
     respond_to :html
     RUBY
@@ -497,7 +497,7 @@ config['bootstrap'] = yes_wizard?("Would you like to use Twitter Bootstrap for q
 
 if config['bootstrap']
     gem 'bootstrap-sass'
-    gsub_file 'app/assets/stylesheets/application.css', :after => "*/ \n" do
+    gsub_file 'app/assets/stylesheets/application.css', /body/ do
     <<-CSS
     @import "bootstrap";
     CSS
