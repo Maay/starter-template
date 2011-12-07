@@ -417,6 +417,7 @@ config = {}
 config['bootstrap'] = yes_wizard?("Would you like to use Twitter Bootstrap for quick layouts prototyping?") if true && true unless config.key?('bootstrap')
 @configs[@current_recipe] = config
 
+after_bundler do
 if config['bootstrap']
     gsub_file 'app/views/layouts/application.slim', /= stylesheet_link_tag "application"/ do
     <<-SLIM
@@ -425,6 +426,7 @@ if config['bootstrap']
     end
 else
   recipes.delete('bootstrap')
+end
 end
 
 # >-----------------------------[ SeedDatabase ]------------------------------<
