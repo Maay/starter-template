@@ -195,6 +195,30 @@ else
   recipes.delete('slim')
 end
 
+# >---------------------------------[ Twitter Bootstrap ]---------------------------------<
+
+@current_recipe = "bootstrap"
+@before_configs["bootstrap"].call if @before_configs["bootstrap"]
+say_recipe 'bootstrap'
+
+config = {}
+config['bootstrap'] = yes_wizard?("Would you like to use Twitter Bootstrap for quick layouts prototyping?") if true && true unless config.key?('bootstrap')
+@configs[@current_recipe] = config
+
+if config['bootstrap']
+    gem 'bootstrap-sass'
+    gsub_file 'app/assets/stylesheets/application.css', /require_self/ do
+    <<-CSS
+    require_self
+    */
+    @import "bootstrap";
+    CSS
+    end
+else
+  recipes.delete('bootstrap')
+end
+
+
 
 # >--------------------------------[ Mongoid ]--------------------------------<
 
@@ -479,28 +503,6 @@ after_bundler do
 
 end
 
-# >---------------------------------[ Twitter Bootstrap ]---------------------------------<
-
-@current_recipe = "bootstrap"
-@before_configs["bootstrap"].call if @before_configs["bootstrap"]
-say_recipe 'bootstrap'
-
-config = {}
-config['bootstrap'] = yes_wizard?("Would you like to use Twitter Bootstrap for quick layouts prototyping?") if true && true unless config.key?('bootstrap')
-@configs[@current_recipe] = config
-
-if config['bootstrap']
-    gem 'bootstrap-sass'
-    gsub_file 'app/assets/stylesheets/application.css', /require_self/ do
-    <<-CSS
-    require_self
-    */
-    @import "bootstrap";
-    CSS
-    end
-else
-  recipes.delete('bootstrap')
-end
 
 
 # >--------------------------------[ Cleanup ]--------------------------------<
