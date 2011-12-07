@@ -195,28 +195,6 @@ else
   recipes.delete('slim')
 end
 
-# >---------------------------------[ Twitter Bootstrap ]---------------------------------<
-
-@current_recipe = "bootstrap"
-@before_configs["bootstrap"].call if @before_configs["bootstrap"]
-say_recipe 'bootstrap'
-
-config = {}
-config['bootstrap'] = yes_wizard?("Would you like to use Twitter Bootstrap for quick layouts prototyping?") if true && true unless config.key?('bootstrap')
-@configs[@current_recipe] = config
-
-if config['bootstrap']
-    gsub_file 'app/views/layouts/application.slim', /= stylesheet_link_tag "application"/ do
-    <<-SLIM
-    = stylesheet_link_tag  "http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css", "application"
-    SLIM
-    end
-else
-  recipes.delete('bootstrap')
-end
-
-
-
 # >--------------------------------[ Mongoid ]--------------------------------<
 
 @current_recipe = "mongoid"
@@ -427,6 +405,26 @@ ERB
   # set routes
   gsub_file 'config/routes.rb', /get \"pages\/index\"/, 'root :to => "pages#index"'
 
+end
+
+# >---------------------------------[ Twitter Bootstrap ]---------------------------------<
+
+@current_recipe = "bootstrap"
+@before_configs["bootstrap"].call if @before_configs["bootstrap"]
+say_recipe 'bootstrap'
+
+config = {}
+config['bootstrap'] = yes_wizard?("Would you like to use Twitter Bootstrap for quick layouts prototyping?") if true && true unless config.key?('bootstrap')
+@configs[@current_recipe] = config
+
+if config['bootstrap']
+    gsub_file 'app/views/layouts/application.slim', /= stylesheet_link_tag "application"/ do
+    <<-SLIM
+    = stylesheet_link_tag  "http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css", "application"
+    SLIM
+    end
+else
+  recipes.delete('bootstrap')
 end
 
 # >-----------------------------[ SeedDatabase ]------------------------------<
