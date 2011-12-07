@@ -21,7 +21,7 @@ Rails.application.config.generators do |g|
 end
 RUBY
 
-@recipes = ["jquery", "slim", "bootstrap", "mongoid", "action_mailer", "devise", "add_user", "layouts", "seed_database", "users_page", "css_setup", "application_layout", "html5", "navigation", "cleanup", "ban_spiders", "extras", "git"]
+@recipes = ["jquery", "slim", "bootstrap", "mongoid", "action_mailer", "devise", "add_user", "layouts", "seed_database", "css_setup",  "cleanup", "ban_spiders", "git"]
 
 def recipes; @recipes end
 def recipe?(name); @recipes.include?(name) end
@@ -483,7 +483,7 @@ end
 
 @current_recipe = "bootstrap"
 @before_configs["bootstrap"].call if @before_configs["bootstrap"]
-say_recipe 'slim'
+say_recipe 'bootstrap'
 
 config = {}
 config['bootstrap'] = yes_wizard?("Would you like to use Twitter Bootstrap for quick layouts prototyping?") if true && true unless config.key?('bootstrap')
