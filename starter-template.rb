@@ -296,11 +296,10 @@ if config['devise']
     # Nothing to do (Devise changes its initializer automatically when Mongoid is detected)
     # gsub_file 'config/initializers/devise.rb', 'devise/orm/active_record', 'devise/orm/mongoid'
     
-     inject_into_file 'app/controllers/application_controller.rb', :after => "ActionController::Base \n" do
-   <<-RUBY
-   protect_from_forgery
-   before_filter :authenticate_user!
-  RUBY
+      gsub_file 'app/controllers/application_controller.rb', :after => "protect_from_forgery\n" do
+     <<-RUBY
+     before_filter :authenticate_user!
+     RUBY
      end
     
   end
@@ -377,6 +376,14 @@ after_bundler do
   # create a pages controller and view
   generate(:controller, "pages index")
 
+  if recipes.include? 'slim'
+      gsub_file 'app/controllers/pages_controller.rb', :after => "ApplicationController \n" do
+    <<-RUBY
+    respond_to :html
+    RUBY
+     end
+  end
+  
   # set up a simple home page (with placeholder content)
   if recipes.include? 'slim'
     remove_file 'app/views/layouts/application.html.erb'
@@ -391,13 +398,7 @@ after_bundler do
      remove_file 'app/views/pages/index.html.erb'
      inside 'app/views/pages/' do
         get 'https://raw.github.com/Maay/starter-template/master/files/rails3-mongoid-devise/app/views/pages/index.slim', 'index.slim'
-      end
-      
-     inject_into_file 'app/controllers/pages_controller.rb', :after => "ApplicationController \n" do
-   <<-RUBY
-   respond_to :html
-  RUBY
-     end 
+      end    
      
   else
     remove_file 'app/views/home/index.html.erb'
@@ -495,12 +496,12 @@ config['bootstrap'] = yes_wizard?("Would you like to use Twitter Bootstrap for q
 @configs[@current_recipe] = config
 
 if config['bootstrap']
-   gem 'bootstrap-sass'
-   inject_into_file 'app/assets/stylesheets/application.css', :after => "*/ \n" do
- <<-CSS
-@import "bootstrap";
-CSS
-   end
+    gem 'bootstrap-sass'
+    gsub_file 'app/assets/stylesheets/application.css', :after => "*/ \n" do
+    <<-CSS
+    @import "bootstrap";
+    CSS
+    end
 else
   recipes.delete('bootstrap')
 end
