@@ -441,7 +441,7 @@ FILE
     # create a default user
     append_file 'db/seeds.rb' do <<-FILE
 puts 'SETTING UP DEFAULT USER LOGIN'
-user = User.create! :name => 'First User', :email => 'user@example.com', :password => 'please', :password_confirmation => 'please'
+user = User.create! :name => 'Putin', :email => 'user@example.com', :password => 'please', :password_confirmation => 'please'
 puts 'New user created: ' << user.name
 FILE
     end
@@ -491,10 +491,11 @@ config['bootstrap'] = yes_wizard?("Would you like to use Twitter Bootstrap for q
 
 if config['bootstrap']
     gem 'bootstrap-sass'
-    gsub_file 'app/assets/stylesheets/application.css', /body {/ do
+    gsub_file 'app/assets/stylesheets/application.css', /require_self/ do
     <<-CSS
+    require_self
+    */
     @import "bootstrap";
-    body {
     CSS
     end
 else

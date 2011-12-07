@@ -1,3 +1,4 @@
-# Application Generator Template
-# Modifies a Rails app to use Mongoid and Devise
-# Usage: rails new APP_NAME -m https://github.com/Maay/starter-template/raw/master/starter-template.rb -T -O
+* Application Generator Template
+* Modifies a Rails app to use Mongoid and Devise
+* Usage: rails new APP_NAME -m https://github.com/Maay/starter-template/raw/master/starter-template.rb -T -O
+* Test user - user@example.com:please
