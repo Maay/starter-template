@@ -473,7 +473,7 @@ say_recipe 'CssSetup'
 after_bundler do
 
   say_wizard "CssSetup recipe running 'after bundler'"
-
+  remove_file 'app/assets/stylesheets/application.css'
   inside 'app/assets/stylesheets/' do
     get 'https://raw.github.com/Maay/starter-template/master/files/rails3-mongoid-devise/app/assets/stylesheets/application.css', 'application.css'
   end
