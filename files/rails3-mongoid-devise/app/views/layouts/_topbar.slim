@@ -12,8 +12,6 @@ div class="navbar navbar-fixed-top"
               =link_to "Edit Profile", edit_user_registration_path
           ul class="nav pull-right"
             li
-              = link_to "#{current_user.username}", profile_path(current_user)
-            li
               = link_to "Log out", destroy_user_session_path, :method => :delete
         - else
           ul class="nav pull-right" 
