@@ -343,9 +343,9 @@ RUBY
       end
     
       # copy SLIM versions of modified Devise views
-      inside 'app/views/registrations' do
-        get 'https://raw.github.com/Maay/starter-template/master/files/rails3-mongoid-devise/app/views/registrations/edit.slim', 'edit.slim'
-        get 'https://raw.github.com/Maay/starter-template/master/files/rails3-mongoid-devise/app/views/registrations/new.slim', 'new.slim'
+      inside 'app/views/devise/registrations' do
+        get 'https://raw.github.com/Maay/starter-template/master/files/rails3-mongoid-devise/app/views/devise/registrations/edit.slim', 'edit.slim'
+        get 'https://raw.github.com/Maay/starter-template/master/files/rails3-mongoid-devise/app/views/devise/registrations/new.slim', 'new.slim'
       end
 
        inside 'app/views/devise/sessions' do
