@@ -1,13 +1,23 @@
-div class="topbar" 
-  div class="topbar-inner fill"
+div class="navbar navbar-fixed-top" 
+  div class="navbar-inner"
     div class="container"
-      h3
-        =link_to "AppName", :root
-      ul class="nav"
-        li
-          =link_to "FAQ", "#"
-        li
-          =link_to "Edit Profile", edit_user_registration_path
-        ul class="nav secondary-nav"
+      = link_to "Appname", :root, :class => "brand"
+      div class="nav-collapse"
+        ul class="nav"
           li
-            =link_to "Log out", destroy_user_session_path
+            =  link_to "FAQ", "#"
+        - if user_signed_in?
+          ul class="nav"
+            li
+              =link_to "Edit Profile", edit_user_registration_path
+          ul class="nav pull-right"
+            li
+              = link_to "#{current_user.username}", profile_path(current_user)
+            li
+              = link_to "Log out", destroy_user_session_path, :method => :delete
+        - else
+          ul class="nav pull-right" 
+            li
+              = link_to "Sign in", new_user_session_path
+            li
+              = link_to "Sign up", new_user_registration_path

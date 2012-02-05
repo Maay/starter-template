@@ -1,4 +1,4 @@
-div class="row show-grid"
+div class="row-fluid"
   div class="span4 columns" &#8201
   div class="span4 columns"
     h2
@@ -6,13 +6,17 @@ div class="row show-grid"
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class=>"form-stacked" }) do |f|
       = devise_error_messages!
       div class="clearfix"
-        = f.label :name
+        = f.label :username
         div class="input"
-          = f.text_field :name
+          = f.text_field :username
       div class="clearfix"
         = f.label :email
         div class="input"
           = f.email_field :email
+      div class="clearfix"
+        = f.label :bio
+        div class="input"
+          = f.text_area :bio, :rows => 3
       div class="clearfix"
         = f.label :password
         i (leave blank if you dont want to change it)
@@ -25,9 +29,10 @@ div class="row show-grid"
   
       div class="clearfix"
         = link_to "Back", :back, :class => "btn"
-        = f.submit "Update", :class => "btn primary"
+        '  
+        = f.submit "Update", :class => "btn btn-primary", :style => "margin-bottom:2px"
   div class="span4 columns" &#8201
   div class="span4 columns"
     h3 Cancel my account
     p
-      | Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete, :class => "btn danger"}
+      | Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete, :class => "btn btn-danger"}

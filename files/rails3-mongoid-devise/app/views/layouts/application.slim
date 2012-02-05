@@ -3,25 +3,24 @@ html
   head
     title 
       ' Appname
-    = stylesheet_link_tag "application"
+    = stylesheet_link_tag "bootstrap.min.css", "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
   body
-    - if current_user
-      = render :partial => "layouts/topbar"
+    = render :partial => "layouts/topbar"
     div class="messages"  
-    div class="container"
+    div class="container-fluid"
       div class="toolbar-free-space"
       div class="content"
         = yield
       footer class="footer"
-        div class="container"
+        div class="container-fluid"
           ul
             li
               ' ©&nbsp;
               a href="http://myhotspot.ru" target="_blank"
-                ' Hot Spot
-              ' &nbsp;2011
+                ' Appname
+              ' &nbsp;2012
             li
               a href="mailto:info@myhotspot.ru"
                ' Связаться с нами
